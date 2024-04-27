@@ -1,7 +1,8 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import NotificationHandler from './components/NotificationHandler.vue'
-import CovenantDropDown from './components/CovenantDropDown.vue';
+import CustomForm from './components/form/CustomForm.vue';
+
 
 </script>
 
@@ -13,14 +14,8 @@ import CovenantDropDown from './components/CovenantDropDown.vue';
     </div>
   </header>
   <main>
-    <form role="search">
-        <p>
-        <label for="emprestimo" class="hidden-visually">Digite o valor do emprestimo: </label>
-        </p>
-        <input type="number" name="emprestimo"/>        
-        <CovenantDropDown />
-    </form>
-   <NotificationHandler />
+    <CustomForm/>
+    <NotificationHandler />    
     
   </main>
 </template>

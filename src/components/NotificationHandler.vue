@@ -7,7 +7,7 @@ const isOpen = ref(false)
 
 <template>
     <div class = "root">
-        <button @click="isOpen = true"> Open </button>
+        <button @click="isOpen = true"> Simular </button>
         <teleport to="body">
             <div class="modal" v-if="isOpen">
                 <modal-content 
