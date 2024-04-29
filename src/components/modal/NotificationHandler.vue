@@ -35,7 +35,7 @@ async function simulateAction() {
                                                 ?  isOpen = false
                                                 :  isOpen = true,
                                                 simulateAction()"> 
-            Simular 
+            SIMULAR 
         </button>
         
         <teleport to="body">        

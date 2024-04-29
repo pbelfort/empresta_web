@@ -180,4 +180,9 @@ export default {
     width: 100%;
     caret-color: black;
   }
+
+.teste:hover{
+  background-color: rebeccapurple;
+}
+
 </style>

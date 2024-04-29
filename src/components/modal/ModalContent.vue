@@ -51,7 +51,7 @@ defineEmits("close")
             <tr v-for="(loan, index) in items.BMG" :key="index">
               <td>{{ loan.parcelas }}</td>
               <td>{{ loan.taxa }}</td>
-              <td>{{ loan.valor_parcela }}</td>
+              <td>{{ String(loan.valor_parcela).replace('.',',') }}</td>
               <td>{{ loan.convenio }}</td>
             </tr>
           </tbody>
@@ -83,7 +83,7 @@ defineEmits("close")
             <tr v-for="(loan, index) in items.PAN" :key="index">
               <td>{{ loan.parcelas }}</td>
               <td>{{ loan.taxa }}</td>
-              <td>{{ loan.valor_parcela }}</td>
+              <td>{{ String(loan.valor_parcela).replace('.',',') }}</td>
               <td>{{ loan.convenio }}</td>
             </tr>
           </tbody>
@@ -115,7 +115,7 @@ defineEmits("close")
             <tr v-for="(loan, index) in items.OLE" :key="index">
               <td>{{ loan.parcelas }}</td>
               <td>{{ loan.taxa }}</td>
-              <td>{{ loan.valor_parcela }}</td>
+              <td>{{ String(loan.valor_parcela).replace('.',',') }}</td>
               <td>{{ loan.convenio }}</td>
             </tr>
           </tbody>

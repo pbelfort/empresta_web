@@ -1,5 +1,5 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloNav from './components/HelloNav.vue'
 import CustomForm from './components/form/CustomForm.vue';
 </script>
 
@@ -7,7 +7,7 @@ import CustomForm from './components/form/CustomForm.vue';
   <header>
     <img alt="Vue logo" class="logo" src="./assets/empresta_icon.png" width="125" height="125" />
     <div class="wrapper">
-      <HelloWorld msg="Digite os dados da simulação" />
+      <HelloNav msg="Digite os dados da simulação" />
     </div>
   </header>
   <main>
