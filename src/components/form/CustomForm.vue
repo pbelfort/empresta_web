@@ -56,9 +56,7 @@ export default {
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-    };
-
-    
+    };    
 
     onMounted(fetchData);
 
@@ -77,43 +75,49 @@ export default {
 </script>
 
 <template>    
-    <form >
+  <form >
     <h2>
       <label class="hidden-visually secondary">Digite o valor do emprestimo: </label>
     </h2>
     <div class="input-prefix">
-    <label class="prefix"> {{ formattedLoanValue }}</label>
-    <input type="number" class="text transparent-input" v-model="loanValue" @input="updateLoanValue">
-</div>
-
-        <!-- ParcelsDropDown -->
-        <div>
-        <div class="secondary"><h2>Selecione o número de parcelas:</h2></div>  
-        <select v-model="parcelSelected" class="custom-input">
-          <option v-for="option in [36,48,60,72,84]">
-              {{ option }}
-          </option>
-        </select>   
-      </div>    
-      
+      <label class="prefix"> {{ formattedLoanValue }}</label>
+      <input type="number" class="text transparent-input" v-model="loanValue" @input="updateLoanValue">
+    </div>
+    <!-- ParcelsDropDown -->
+    <div>
+      <div class="secondary">
+        <h2>Selecione o número de parcelas:
+        </h2>
+      </div>  
+      <select v-model="parcelSelected" class="custom-input">
+        <option v-for="option in [36,48,60,72,84]">
+          {{ option }}
+        </option>
+      </select>   
+    </div>    
       <!-- Displaying fetched data -->
       <div>
-      <div class="secondary"><h2>Selecione o convênio:</h2></div>      
-      <div v-if="dataLoaded">
-        <select v-model="covenantSelected" class="custom-input">
-          <option v-for="option in convenantData" :value="option.chave">
-              {{ option.valor }}
-          </option>
-        </select>   
-      </div>
-      <div v-else>
-        <div class="loader"></div>
-      </div>
+        <div class="secondary">
+          <h2>Selecione o convênio:
+          </h2>
+        </div>      
+        <div v-if="dataLoaded">
+          <select v-model="covenantSelected" class="custom-input">
+            <option v-for="option in convenantData" :value="option.chave">
+                {{ option.valor }}
+            </option>
+          </select>   
+        </div>
+        <div v-else>
+          <div class="loader"></div>
+        </div>
     </div>
-
     <div>
       <!-- Displaying fetched data -->
-      <div class="secondary"><h2>Selecione a instituição financeira:</h2></div>    
+      <div class="secondary">
+        <h2>Selecione a instituição financeira:
+        </h2>
+      </div>    
       <div v-if="dataLoaded">    
         <select v-model="institutionSelected" class="custom-input"> 
           <option v-for="option in institutionData" :value="option.chave">
@@ -125,21 +129,19 @@ export default {
         <div class="loader"></div>
       </div>
     </div>
-    </form>
+  </form>
 
-    <div>
-    <!-- Button to clear the input field -->
+  <div>
     <button class="transparent-button" @click="clearInput">Limpar todos os campos</button>
   </div>
 
-    <NotificationHandler 
-      :valorEmprestimo="loanValue" 
-      :instituicoes=[institutionSelected] 
-      :convenios=[covenantSelected]
-      :institutionSelected=[institutionSelected]      
-      :parcela=parcelSelected
-      />  
-    
+  <NotificationHandler 
+    :valorEmprestimo="loanValue" 
+    :instituicoes=[institutionSelected] 
+    :convenios=[covenantSelected]
+    :institutionSelected=[institutionSelected]      
+    :parcela=parcelSelected
+  />    
 </template>
 
 <style scoped>
@@ -150,7 +152,6 @@ export default {
   border-radius: 5px;
   width: 100%;
 }
-
 .prefix {
     position: absolute;
     color: black;
@@ -164,7 +165,6 @@ export default {
     color: #fdfdc8; /* Text color */
     cursor: pointer; /* Set cursor to pointer on hover */
 }
-
 .transparent-input {
     padding: 10px;
     font-size: 16px;
