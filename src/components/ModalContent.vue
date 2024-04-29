@@ -3,8 +3,6 @@ import { defineProps, defineEmits } from 'vue';
 import CloseCircleIcon from 'vue-material-design-icons/CloseCircle.vue';
 
 defineProps({
-    title: String,
-    msg: String,
     items: {
       type: Array,
       default: () => []
@@ -18,16 +16,91 @@ defineEmits("close")
                     <CloseCircleIcon/> 
                 </base-button>
                 <h2>
-                    {{title}}
+                    Propostas geradas
                 </h2>
                 <p>
-                    {{msg}}
+                  Aqui estão algumas propostas geradas com os valores digitados
                 </p>
-                <ul>
-                    <li v-for="item in items" :key="item">
-                        {{ item }}
-                    </li>
-                </ul>
-            </div>
-    </template>
+<div v-if="items.BMG !=null">
+  <h2>BMG Loan Data</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Parcelas</th>
+        <th>Taxa (%)</th>
+        <th>Valor da Parcela (R$)</th>
+        <th>Convênio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through each loan object in the BMG array -->
+      <tr v-for="(loan, index) in items.BMG" :key="index">
+        <td>{{ loan.parcelas }}</td>
+        <td>{{ loan.taxa }}</td>
+        <td>{{ loan.valor_parcela }}</td>
+        <td>{{ loan.convenio }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div v-else>
+      <!-- Display a message if items.BMG is undefined or empty -->
+      <p>No BMG items available.</p>
+    </div>
+    
 
+<div v-if="items.PAN != null">
+  <h2>PAN Loan Data</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Parcelas</th>
+        <th>Taxa (%)</th>
+        <th>Valor da Parcela (R$)</th>
+        <th>Convênio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through each loan object in the BMG array -->
+      <tr v-for="(loan, index) in items.PAN" :key="index">
+        <td>{{ loan.parcelas }}</td>
+        <td>{{ loan.taxa }}</td>
+        <td>{{ loan.valor_parcela }}</td>
+        <td>{{ loan.convenio }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div v-else>
+      <!-- Display a message if items.BMG is undefined or empty -->
+      <p>No PAN items available.</p>
+    </div>
+
+<div v-if="items.OLE != null">
+  <h2>OLE Loan Data</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Parcelas</th>
+        <th>Taxa (%)</th>
+        <th>Valor da Parcela (R$)</th>
+        <th>Convênio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through each loan object in the BMG array -->
+      <tr v-for="(loan, index) in items.OLE" :key="index">
+        <td>{{ loan.parcelas }}</td>
+        <td>{{ loan.taxa }}</td>
+        <td>{{ loan.valor_parcela }}</td>
+        <td>{{ loan.convenio }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div v-else>
+      <!-- Display a message if items.BMG is undefined or empty -->
+      <p>No OLE items available.</p>
+    </div>
+</div>
+</template>

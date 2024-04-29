@@ -1,12 +1,16 @@
 <script>
 import { onMounted,ref } from 'vue';
+import NotificationHandler from '../../components/NotificationHandler.vue'
 
 export default {
+  components: {
+    NotificationHandler
+  },
   setup() {
     const convenantData = ref([]);
     const institutionData = ref([]);
     const dataLoaded = ref(false);
-    const newItem = ref("")
+    const loanValue = ref("")
     const parcelSelected = ref(0)
     const covenantSelected = ref("")
     const institutionSelected = ref("")
@@ -15,11 +19,19 @@ export default {
 
     const fetchData = async () => {
       try {
-        var response = await fetch('http://192.168.0.102:8000/api/convenio');
+        const getArguments = {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+        var response = await fetch('http://192.168.0.102:8000/api/convenio',
+                                    getArguments,
+                                  );
         var data = await response.json();
         convenantData.value = data;
 
-        response = await fetch('http://192.168.0.102:8000/api/instituicao');
+        response = await fetch('http://192.168.0.102:8000/api/instituicao',
+                                getArguments,
+                              );
         data = await response.json();
         institutionData.value = data;
 
@@ -36,7 +48,7 @@ export default {
       convenantData,
       institutionData,
       dataLoaded,
-      newItem,
+      loanValue,
       parcelSelected,
       covenantSelected,
       institutionSelected,
@@ -45,13 +57,12 @@ export default {
 };
 </script>
 
-<template>
-    
+<template>    
     <form >
         <p>
         <label class="hidden-visually">Digite o valor do emprestimo: </label>
         </p>
-        <input v-model="newItem" type="number" />  
+        <input v-model="loanValue" type="number" />  
 
         <!-- ParcelsDropDown -->
         <div>
@@ -92,15 +103,13 @@ export default {
         <p>Loading...</p>
       </div>
     </div>
-
-        
-
     </form>
     
-    <div>{{ newItem }}</div>
-    <div>{{ parcelSelected }}</div>
-    <div>{{ covenantSelected }}</div>
-    <div>{{ institutionSelected }}</div>
-
+    <NotificationHandler 
+      :valorEmprestimo="loanValue" 
+      :instituicoes=[institutionSelected] 
+      :convenios=[covenantSelected]
+      :institutionSelected=[institutionSelected]      
+      />  
     
 </template>

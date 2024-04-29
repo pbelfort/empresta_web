@@ -1,24 +1,53 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
 import ModalContent from './ModalContent.vue';
+
 const isOpen = ref(false)
+const responseData = ref();
+
+const props = defineProps({
+    valorEmprestimo: Number,
+    instituicoes: Array,
+    convenios: Array,
+    parcela: Number
+})
+
+async function simulate() {
+    const postArguments = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(
+            {
+             "valor_emprestimo":props.valorEmprestimo ?? 0,
+             "instituicoes":(props.instituicoes == "" || props.instituicoes == null) ? [] : props.instituicoes,
+             "convenios": (props.convenios == "" || props.convenios == null) ? [] : props.convenios,
+             "parcela": (props.parcela == "" || props.parcela == null) ? 0 : props.parcela,
+            })
+        }
+    var response = await fetch('http://192.168.0.102:8000/api/simular',
+                                postArguments
+                                  );
+        var data = await response.json();
+        responseData.value = data;
+}
 
 </script>
-
 <template>
     <div class = "root">
-        <button @click="isOpen = true"> Simular </button>
+        
+        <button @click="isOpen = true, simulate()"> Simular </button>
         <teleport to="body">
             <div class="modal" v-if="isOpen">
                 <modal-content 
                 @close="isOpen = false"
-                    title="opaaa"
+                    :title="loanValue"
                     msg="maooe"
-                    :items="[{'Apple':'0','Amor':1}, 'Banana', 'Orange']"
-                />
+                    :items="responseData"
+                />    
             </div>
         </teleport>   
     </div>
+
 </template>
 
 <style> 

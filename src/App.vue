@@ -1,6 +1,5 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import NotificationHandler from './components/NotificationHandler.vue'
 import CustomForm from './components/form/CustomForm.vue';
 
 
@@ -14,9 +13,7 @@ import CustomForm from './components/form/CustomForm.vue';
     </div>
   </header>
   <main>
-    <CustomForm/>
-    <NotificationHandler />    
-    
+    <CustomForm/>    
   </main>
 </template>
 
