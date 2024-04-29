@@ -22,7 +22,9 @@ defineEmits("close")
       <p>Aguarde!</p>
       <p>Estamos buscando as informações da simulação!</p>
       <br/>
-      <div class="loader"></div>
+      <div class="loader loader-margin"></div>
+      <br/>
+      <p>Obs.: Selecione outros filtros se persistir.</p>
     </div>
     <div v-else class="secondary">
 
@@ -143,7 +145,7 @@ defineEmits("close")
   color: #fdfdc8;
 }
 
-.loader{
+.loader-margin{
   margin: auto;
 }
 
