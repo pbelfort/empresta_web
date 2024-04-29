@@ -2,6 +2,7 @@
 import { onMounted,ref } from 'vue';
 import NotificationHandler from '../../components/NotificationHandler.vue'
 import {showMoney} from '../../helpers/money'
+import {getDataFromApi} from '../../controllers/fetchController'
 
 export default {
   components: {
@@ -9,6 +10,7 @@ export default {
   },
   methods:{
     showMoney,
+    getDataFromApi,
     updateLoanValue(event) {
       this.formattedLoanValue = showMoney(event.target.value)
    },
@@ -30,23 +32,16 @@ export default {
     const institutionSelected = ref("")
     const formattedLoanValue = ref("")
 
-    async function fetchDataFromApi(url){
-      const getArguments = {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        }
-      const baseURL = 'http://192.168.0.102:8000/api/'
-      return await fetch(baseURL+url,getArguments);
-    }
+
 
     const fetchData = async () => {
       try {
 
-        var response = await fetchDataFromApi('convenio');
+        var response = await getDataFromApi('convenio');
         var data = await response.json();
         convenantData.value = data;
 
-        response = await fetchDataFromApi('instituicao');
+        response = await getDataFromApi('instituicao');
 
         data = await response.json();
         institutionData.value = data;

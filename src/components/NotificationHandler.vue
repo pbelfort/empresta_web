@@ -1,6 +1,7 @@
 <script setup>
 import { ref, defineProps } from 'vue'
-import ModalContent from './ModalContent.vue';
+import ModalContent from './ModalContent.vue'
+import {simulate} from '../controllers/fetchController'
 
 const isOpen = ref(false)
 const responseData = ref();
@@ -12,29 +13,22 @@ const props = defineProps({
     parcela: Number
 })
 
-async function simulate() {
-    const postArguments = {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(
+async function simulateAction() {
+    const body = JSON.stringify(
             {
              "valor_emprestimo":props.valorEmprestimo ?? 0,
              "instituicoes":(props.instituicoes == "" || props.instituicoes == null) ? [] : props.instituicoes,
              "convenios": (props.convenios == "" || props.convenios == null) ? [] : props.convenios,
              "parcela": (props.parcela == "" || props.parcela == null) ? 0 : props.parcela,
-            })
-        }
-    var response = await fetch('http://192.168.0.102:8000/api/simular',
-                                postArguments
-                                  );
-        var data = await response.json();
-        responseData.value = data;
+            });
+
+    responseData.value = await simulate(body);
 }
 
 </script>
 <template>
     <div class = "root">
-        <button class="custom-button" @click="isOpen = true, simulate()"> Simular </button>
+        <button class="custom-button" @click="isOpen = true, simulateAction()"> Simular </button>
         <teleport to="body">
 
         
