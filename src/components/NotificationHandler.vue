@@ -36,6 +36,8 @@ async function simulate() {
     <div class = "root">
         <button class="custom-button" @click="isOpen = true, simulate()"> Simular </button>
         <teleport to="body">
+
+        
             <div class="modal" v-if="isOpen">
                 <modal-content 
                 @close="isOpen = false"

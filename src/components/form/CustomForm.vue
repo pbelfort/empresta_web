@@ -1,10 +1,17 @@
 <script>
 import { onMounted,ref } from 'vue';
 import NotificationHandler from '../../components/NotificationHandler.vue'
+import {showMoney} from '../../helpers/money'
 
 export default {
   components: {
     NotificationHandler
+  },
+  methods:{
+    showMoney,
+    updateLoanValue(event) {
+      this.formattedLoanValue = showMoney(event.target.value)
+   }
   },
   setup() {
     const convenantData = ref([]);
@@ -14,8 +21,7 @@ export default {
     const parcelSelected = ref(0)
     const covenantSelected = ref("")
     const institutionSelected = ref("")
-
-
+    const formattedLoanValue = ref("")
 
     const fetchData = async () => {
       try {
@@ -52,6 +58,7 @@ export default {
       parcelSelected,
       covenantSelected,
       institutionSelected,
+      formattedLoanValue,
     };
   }
 };
@@ -59,13 +66,13 @@ export default {
 
 <template>    
     <form >
-        <p>
-        <label class="hidden-visually">Digite o valor do emprestimo: </label>
-        </p>
-        <input v-model="loanValue"
-               type="number"
-               class="custom-input"
-                />  
+    <p>
+      <label class="hidden-visually">Digite o valor do emprestimo: </label>
+    </p>
+    <div class="input-prefix">
+    <label class="prefix"> {{ formattedLoanValue }}</label>
+    <input type="number" class="text transparent-input" v-model="loanValue" @input="updateLoanValue">
+</div>
 
         <!-- ParcelsDropDown -->
         <div>
@@ -126,4 +133,22 @@ export default {
   border-radius: 5px;
   width: 100%;
 }
+
+.prefix {
+    position: absolute;
+    color: black;
+    padding: 8px;
+}
+
+.transparent-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    background-color: transparent; /* Set the background color to transparent */
+    color: #ffffff; /* Text color */
+    width: 100%;
+    caret-color: black; /* Set the caret color to red */  
+  }
 </style>
