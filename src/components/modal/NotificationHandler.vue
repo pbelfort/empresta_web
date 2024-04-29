@@ -14,6 +14,9 @@ const props = defineProps({
 })
 
 async function simulateAction() {
+    if(props.valorEmprestimo == "" || props.valorEmprestimo <= 0.0) {
+        alert('O valor do empréstimo não pode ser vazio!')    
+    }
     const body = JSON.stringify(
             {
              "valor_emprestimo":props.valorEmprestimo ?? 0,
@@ -28,14 +31,17 @@ async function simulateAction() {
 </script>
 <template>
     <div class = "root">
-        <button class="custom-button" @click="isOpen = true, simulateAction()"> Simular </button>
-        <teleport to="body">
-
+        <button class="custom-button" @click=" (props.valorEmprestimo == '' || props.valorEmprestimo <= 0.0) 
+                                                ?  isOpen = false
+                                                :  isOpen = true,
+                                                simulateAction()"> 
+            Simular 
+        </button>
         
+        <teleport to="body">        
             <div class="modal" v-if="isOpen">
                 <modal-content 
                 @close="isOpen = false"
-                    :title="loanValue"
                     :items="responseData"
                 />    
             </div>

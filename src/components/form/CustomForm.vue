@@ -1,7 +1,7 @@
 <script>
 import { onMounted,ref } from 'vue';
 import NotificationHandler from '../modal/NotificationHandler.vue'
-import {showMoney} from '../../helpers/money'
+import {showMoney, onlyNumber} from '../../helpers/moneyFormatter'
 import {getDataFromApi} from '../../controllers/fetchController'
 
 export default {
@@ -10,6 +10,7 @@ export default {
   },
   methods:{
     showMoney,
+    onlyNumber,
     getDataFromApi,
     updateLoanValue(event) {
       this.formattedLoanValue = showMoney(event.target.value)
@@ -76,7 +77,7 @@ export default {
     </h2>
     <div class="input-prefix">
       <label class="prefix"> {{ formattedLoanValue }}</label>
-      <input type="number" class="text transparent-input" v-model="loanValue" @input="updateLoanValue">
+      <input type="number" class="text transparent-input" v-model="loanValue" @input="updateLoanValue" @keypress="onlyNumber">
     </div>
     <!-- ParcelsDropDown -->
     <div>
