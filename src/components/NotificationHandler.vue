@@ -42,7 +42,6 @@ async function simulate() {
                 <modal-content 
                 @close="isOpen = false"
                     :title="loanValue"
-                    msg="maooe"
                     :items="responseData"
                 />    
             </div>
@@ -69,7 +68,7 @@ async function simulate() {
 }
 
 .modal > div {
-    background-color: mediumseagreen;
+    background-color: #663e01;
     padding: 60px;
     border-radius: 10px;
 }

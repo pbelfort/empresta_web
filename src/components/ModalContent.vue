@@ -11,13 +11,20 @@ defineProps({
 defineEmits("close")
 </script>
     <template>        
-            <div>                
-                <base-button @click="$emit('close')" > 
-                    <CloseCircleIcon /> 
-                </base-button>
-<div v-if="items.BMG !=null">
-  <h4>BMG Loan Data</h4>
-  <table border="1">
+        <div>                
+            <base-button @click="$emit('close')" > 
+            <CloseCircleIcon class="secondary" /> 
+            </base-button>
+            <div v-if="items.BMG ==null && items.PAN ==null && items.OLE ==null" class="secondary">
+              <div class="loader"></div>
+            </div>
+  <div v-else class="secondary">
+    <div v-if="items.BMG !=null" class="secondary">
+    <div>
+    <img alt="Vue logo" src="../assets/banco_bmg.png" width="30" height="30" />
+    Simulação BMG
+    </div>
+  <table border="1" id="customers">
     <thead>
       <tr>
         <th>Parcelas</th>
@@ -37,15 +44,17 @@ defineEmits("close")
     </tbody>
   </table>
 </div>
-<div v-else>
-      <!-- Display a message if items.BMG is undefined or empty -->
-      <p>No BMG items available.</p>
+<div v-else class="secondary">
+      <p>Não foi possível encontrar simulações no banco BMG.</p>
     </div>
     
 
-<div v-if="items.PAN != null">
-  <h4>PAN Loan Data</h4>
-  <table border="1">
+<div v-if="items.PAN != null" class="secondary">
+  <div>
+    <img alt="Vue logo" src="../assets/banco_pan.png" width="30" height="30" />
+    Simulação PAN
+  </div>
+  <table border="1" id="customers">
     <thead>
       <tr>
         <th>Parcelas</th>
@@ -65,14 +74,16 @@ defineEmits("close")
     </tbody>
   </table>
 </div>
-<div v-else>
-      <!-- Display a message if items.BMG is undefined or empty -->
-      <p>No PAN items available.</p>
+<div v-else class="secondary">
+      <p>Não foi possível encontrar simulações no banco PAN.</p>
     </div>
 
-<div v-if="items.OLE != null">
-  <h4>OLE Loan Data</h4>
-  <table border="1">
+<div v-if="items.OLE != null" class="secondary">
+  <div>
+    <img alt="Vue logo" src="../assets/banco_ole.png" width="30" height="30" />
+    Simulação OLE
+  </div>
+  <table border="1" id="customers">
     <thead>
       <tr>
         <th>Parcelas</th>
@@ -92,9 +103,35 @@ defineEmits("close")
     </tbody>
   </table>
 </div>
-<div v-else>
-      <!-- Display a message if items.BMG is undefined or empty -->
-      <p>No OLE items available.</p>
+<div v-else class="secondary">
+      <p>Não foi possível encontrar simulações no banco OLE.</p>
     </div>
 </div>
+</div>
 </template>
+
+<style> 
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f69907;}
+
+#customers tr:hover {background-color: #ac6903;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #6ebc6f;
+  color: #fdfdc8;
+}
+
+</style>
