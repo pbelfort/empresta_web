@@ -34,8 +34,7 @@ async function simulate() {
 </script>
 <template>
     <div class = "root">
-        
-        <button @click="isOpen = true, simulate()"> Simular </button>
+        <button class="custom-button" @click="isOpen = true, simulate()"> Simular </button>
         <teleport to="body">
             <div class="modal" v-if="isOpen">
                 <modal-content 
@@ -68,9 +67,20 @@ async function simulate() {
 }
 
 .modal > div {
-    background-color: blanchedalmond;
+    background-color: mediumseagreen;
     padding: 60px;
     border-radius: 10px;
+}
+
+.custom-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: mediumseagreen;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 </style>

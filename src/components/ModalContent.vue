@@ -13,16 +13,10 @@ defineEmits("close")
     <template>        
             <div>                
                 <base-button @click="$emit('close')" > 
-                    <CloseCircleIcon/> 
+                    <CloseCircleIcon /> 
                 </base-button>
-                <h2>
-                    Propostas geradas
-                </h2>
-                <p>
-                  Aqui estão algumas propostas geradas com os valores digitados
-                </p>
 <div v-if="items.BMG !=null">
-  <h2>BMG Loan Data</h2>
+  <h4>BMG Loan Data</h4>
   <table border="1">
     <thead>
       <tr>
@@ -50,7 +44,7 @@ defineEmits("close")
     
 
 <div v-if="items.PAN != null">
-  <h2>PAN Loan Data</h2>
+  <h4>PAN Loan Data</h4>
   <table border="1">
     <thead>
       <tr>
@@ -77,7 +71,7 @@ defineEmits("close")
     </div>
 
 <div v-if="items.OLE != null">
-  <h2>OLE Loan Data</h2>
+  <h4>OLE Loan Data</h4>
   <table border="1">
     <thead>
       <tr>

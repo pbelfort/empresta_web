@@ -62,12 +62,15 @@ export default {
         <p>
         <label class="hidden-visually">Digite o valor do emprestimo: </label>
         </p>
-        <input v-model="loanValue" type="number" />  
+        <input v-model="loanValue"
+               type="number"
+               class="custom-input"
+                />  
 
         <!-- ParcelsDropDown -->
         <div>
         <div> Selecione o número de parcelas: </div>  
-        <select v-model="parcelSelected">
+        <select v-model="parcelSelected" class="custom-input">
           <option v-for="option in [36,48,60,72,84]">
               {{ option }}
           </option>
@@ -78,7 +81,7 @@ export default {
       <div>
       <div v-if="dataLoaded">
         <div>Selecione o convênio:</div>        
-        <select v-model="covenantSelected">
+        <select v-model="covenantSelected" class="custom-input">
           <option v-for="option in convenantData" :value="option.chave">
               {{ option.valor }}
           </option>
@@ -93,7 +96,7 @@ export default {
       <!-- Displaying fetched data -->
       <div v-if="dataLoaded">
         <div>Selecione a instituição financeira:</div>        
-        <select v-model="institutionSelected"> 
+        <select v-model="institutionSelected" class="custom-input"> 
           <option v-for="option in institutionData" :value="option.chave">
               {{ option.valor }}
           </option>
@@ -104,12 +107,23 @@ export default {
       </div>
     </div>
     </form>
-    
+
     <NotificationHandler 
       :valorEmprestimo="loanValue" 
       :instituicoes=[institutionSelected] 
       :convenios=[covenantSelected]
       :institutionSelected=[institutionSelected]      
+      :parcela=parcelSelected
       />  
     
 </template>
+
+<style scoped>
+.custom-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+</style>
