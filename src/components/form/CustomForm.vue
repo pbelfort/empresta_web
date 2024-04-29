@@ -1,6 +1,6 @@
 <script>
 import { onMounted,ref } from 'vue';
-import NotificationHandler from '../../components/NotificationHandler.vue'
+import NotificationHandler from '../modal/NotificationHandler.vue'
 import {showMoney} from '../../helpers/money'
 import {getDataFromApi} from '../../controllers/fetchController'
 

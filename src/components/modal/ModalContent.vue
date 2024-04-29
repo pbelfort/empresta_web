@@ -31,7 +31,7 @@ defineEmits("close")
       <!--BMG Simulation-->
       <div v-if="items.BMG !=null" class="secondary">
         <div>
-          <img alt="Vue logo" src="../assets/banco_bmg.png" width="30" height="30" />
+          <img alt="Vue logo" src="../../assets/banco_bmg.png" width="30" height="30" />
           Simulação BMG
         </div>
         <table border="1" id="simulations">
@@ -61,7 +61,7 @@ defineEmits("close")
       <!--PAN Simulation--> 
       <div v-if="items.PAN != null" class="secondary">
         <div>
-          <img alt="Vue logo" src="../assets/banco_pan.png" width="30" height="30" />
+          <img alt="Vue logo" src="../../assets/banco_pan.png" width="30" height="30" />
           Simulação PAN
         </div>
         <table border="1" id="simulations">
@@ -91,7 +91,7 @@ defineEmits("close")
        <!--OLE Simulation--> 
       <div v-if="items.OLE != null" class="secondary">
         <div>
-          <img alt="Vue logo" src="../assets/banco_ole.png" width="30" height="30" />
+          <img alt="Vue logo" src="../../assets/banco_ole.png" width="30" height="30" />
           Simulação OLE
         </div>
         <table border="1" id="simulations">

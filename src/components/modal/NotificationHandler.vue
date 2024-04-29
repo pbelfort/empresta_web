@@ -1,7 +1,7 @@
 <script setup>
 import { ref, defineProps } from 'vue'
-import ModalContent from './ModalContent.vue'
-import {simulate} from '../controllers/fetchController'
+import ModalContent from '../modal/ModalContent.vue'
+import {simulate} from '../../controllers/fetchController'
 
 const isOpen = ref(false)
 const responseData = ref();
