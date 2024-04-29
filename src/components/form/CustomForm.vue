@@ -13,7 +13,13 @@ export default {
     onlyNumber,
     getDataFromApi,
     updateLoanValue(event) {
-      this.formattedLoanValue = showMoney(event.target.value)
+      const value = event.target.value;      
+      if(String(value).length < 10){      
+        this.formattedLoanValue = showMoney(value);
+        return;
+      }
+      this.loanValue =  value.slice(0,10);
+      this.formattedLoanValue = showMoney(this.loanValue);      
    },
    clearInput() {
       this.loanValue =''; 
@@ -33,20 +39,18 @@ export default {
     const institutionSelected = ref("")
     const formattedLoanValue = ref("")
 
-
-
     const fetchData = async () => {
       try {
 
+        //getting covenant data
         var response = await getDataFromApi('convenio');
         var data = await response.json();
         convenantData.value = data;
 
+        //getting institution data
         response = await getDataFromApi('instituicao');
-
         data = await response.json();
         institutionData.value = data;
-
 
         dataLoaded.value = true;
       } catch (error) {
@@ -77,7 +81,11 @@ export default {
     </h2>
     <div class="input-prefix">
       <label class="prefix"> {{ formattedLoanValue }}</label>
-      <input type="number" class="text transparent-input" v-model="loanValue" @input="updateLoanValue" @keypress="onlyNumber">
+      <input type="number"
+             class="text transparent-input" 
+             v-model="loanValue" 
+             @input="updateLoanValue" 
+             @keypress="onlyNumber">
     </div>
     <!-- ParcelsDropDown -->
     <div>
@@ -154,12 +162,12 @@ export default {
     padding: 8px;
 }
 .transparent-button {
-    padding: 0px 0px; /* Add padding to the button */  
+    padding: 0px 0px;
     font-size: 16px;
-    border: solid transparent; /* Set border to transparent */
-    background-color: transparent; /* Set background color to transparent */
-    color: #fdfdc8; /* Text color */
-    cursor: pointer; /* Set cursor to pointer on hover */
+    border: solid transparent; 
+    background-color: transparent;
+    color: #fdfdc8; 
+    cursor: pointer; 
 }
 .transparent-input {
     padding: 10px;
@@ -168,8 +176,8 @@ export default {
     border-radius: 5px;
     width: 100%;
     background-color: #ffffff;
-    color: #ffffff; /* Text color */
+    color: #ffffff; 
     width: 100%;
-    caret-color: black; /* Set the caret color to red */  
+    caret-color: black;
   }
 </style>

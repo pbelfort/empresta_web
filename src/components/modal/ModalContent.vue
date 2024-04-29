@@ -19,20 +19,23 @@ defineEmits("close")
     </base-button>
     
     <div v-if="items.BMG ==null && items.PAN ==null && items.OLE ==null" class="secondary">
-      <p>Aguarde!</p>
-      <p>Estamos buscando as informações da simulação!</p>
+      <p>Aguarde</p>
+      <p>Estamos tentando buscar as informações da simulação!</p>
       <br/>
       <div class="loader loader-margin"></div>
       <br/>
-      <p>Obs.: Selecione outros filtros se persistir.</p>
+      <p>Talvez não obtemos nenhum resultado.</p>
+      <p>Tente selecionar novos termos para simular.</p>
     </div>
     <div v-else class="secondary">
 
       <!--BMG Simulation-->
       <div v-if="items.BMG !=null" class="secondary">
         <div>
+          <h2>
           <img alt="Vue logo" src="../../assets/banco_bmg.png" width="30" height="30" />
           Simulação BMG
+          </h2>
         </div>
         <table border="1" id="simulations">
           <thead>
@@ -55,14 +58,16 @@ defineEmits("close")
         </table>
       </div>
       <div v-else class="secondary">
-        <p>Não foi possível encontrar simulações no banco BMG.</p>
+        <p>Não encontrei simulações no banco BMG com os filtros selecionados.</p>
       </div>
 
       <!--PAN Simulation--> 
       <div v-if="items.PAN != null" class="secondary">
         <div>
+          <h2>
           <img alt="Vue logo" src="../../assets/banco_pan.png" width="30" height="30" />
           Simulação PAN
+          </h2>
         </div>
         <table border="1" id="simulations">
           <thead>
@@ -85,14 +90,16 @@ defineEmits("close")
         </table>
       </div>
       <div v-else class="secondary">
-        <p>Não foi possível encontrar simulações no banco PAN.</p>
+        <p>Não encontrei simulações no banco PAN com os filtros selecionados.</p>
       </div>
 
        <!--OLE Simulation--> 
       <div v-if="items.OLE != null" class="secondary">
         <div>
-          <img alt="Vue logo" src="../../assets/banco_ole.png" width="30" height="30" />
+          <h2>
+          <img alt="Vue logo" src="../../assets/banco_ole.png" width="30" height="30" />        
           Simulação OLE
+          </h2>
         </div>
         <table border="1" id="simulations">
           <thead>
@@ -115,7 +122,7 @@ defineEmits("close")
         </table>
       </div>
       <div v-else class="secondary">
-        <p>Não foi possível encontrar simulações no banco OLE.</p>
+        <p>Não encontrei simulações no banco OLE com os filtros selecionados.</p>
       </div>
     </div>
   </div>
